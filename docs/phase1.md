@@ -63,3 +63,18 @@ python -m pytest -q
 `lcrp.loop.SegmentLoop` runs **route → prefetch → pin → admit → apply** against
 an in-memory toy bank (`lcrp.bank`). Every step is journaled. Admission uses
 Campaign A′ caps. This is a systems dry-run, not model inference.
+
+
+## FP8 core smoke (local)
+
+On a machine with the A′ core at `/mnt/extra/models/Qwen2.5-7B-Instruct-FP8-dynamic`
+and a vLLM env (e.g. `/mnt/extra/venvs/lcrp-smoke`):
+
+```sh
+VLLM_USE_FLASHINFER_SAMPLER=0 /mnt/extra/venvs/lcrp-smoke/bin/python \
+  scripts/smoke_fp8_vllm.py | tee /tmp/smoke_fp8_vllm.log
+```
+
+Expect core weights ≈ 8.21 GiB (≤ 9000 MiB) and process-attributed resident
+delta ≤ 14000 MiB with room for the 1024 MiB pin budget. Hugging Face
+`transformers` is **not** a valid FP8 path here — it decompresses to BF16.
