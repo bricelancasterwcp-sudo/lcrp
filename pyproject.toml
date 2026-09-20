@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lcrp"
-version = "0.0.0"
-description = "Logic-Core + Retrieved Parametric Patches (Phase 0 scaffold)"
+version = "0.1.0"
+description = "Logic-Core + Retrieved Parametric Patches (Campaign A′ scaffold)"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }

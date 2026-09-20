@@ -14,7 +14,7 @@ measure, refuse rather than guess, journal what actually ran.
 
 ## Status
 
-**Phase 0 — design.** Docs and stub modules only. No training stack yet.
+**Phase 1 — Campaign A′ scaffold** (admission / router / journal). Phase 0 docs remain authoritative. No training stack yet.
 
 ## Read in this order
 
@@ -23,7 +23,9 @@ measure, refuse rather than guess, journal what actually ran.
 3. [docs/assay-eval-plan.md](docs/assay-eval-plan.md) — pre-registered eval
 4. [docs/sensorium-harness.md](docs/sensorium-harness.md) — what to trace in tests
 5. [docs/borrowed-laws.md](docs/borrowed-laws.md) — constitution from sibling repos
-6. [docs/gates.md](docs/gates.md) — kill gates
+6. [docs/gates.md](docs/gates.md) — Campaign A′ kill gates
+7. [docs/phase1.md](docs/phase1.md) — Phase 1 scaffold notes
+
 
 ## Sibling stack
 
