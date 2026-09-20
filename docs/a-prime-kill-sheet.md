@@ -21,7 +21,7 @@ collapsing core_logic.
 | K3 | Prefetch cannot hide load | p95 `prefetch_wait_ms` **> 20** with pins in budget |
 | K4 | Bank carries no knowledge | `oracle_patches − core_only` on long_tail_factual **< +15 pp** (n=100) |
 | K5 | Router misses the bank | On long_tail_factual **or** multi_hop, `router < oracle − 5 pp` (n=100, τ frozen on calib) |
-| K6 | Core is a hollowed shell | `core_only` on core_logic **< dense_ref − 3 pp** (or **< 90%** of dense_ref if that lens was pre-registered) |
+| K6 | Core is a hollowed shell | `core_only` on core_logic **> 3 pp** below `dense_ref` on the same items (i.e. must stay within **≤ 3 pp** of dense_ref, or kill). No ratio lens. |
 | K7 | Wrong patch is free lunch | Deliberate mis-route / wrong-domain pin **improves** the cell vs core_only without a refuse — contamination, not retrieval |
 | K8 | Hot path is not the eval path | Quality claimed on PEFT/offline generate while serve is vLLM (or vice versa) with no paired rerun — claim is void |
 
