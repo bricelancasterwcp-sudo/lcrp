@@ -87,3 +87,9 @@ then a context sweep (~256–4k tokens). Sample report:
 `scripts/smoke_fp8_a_prime_battery_report.json`. Decode throughput sample:
 `scripts/smoke_fp8_decode_report.json`.
 
+### Calibrated core weight
+
+`A_PRIME_CORE.approx_weights_mib` is **8407** (vLLM 0.29 measured weight load on
+RTX 5080). Use that for `admit()` / resident planning — not the older 7800
+estimate. Batch QPS sample: `scripts/smoke_fp8_batch_qps_report.json`.
+

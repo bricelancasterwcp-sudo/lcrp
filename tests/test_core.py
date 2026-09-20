@@ -27,7 +27,7 @@ def test_a_prime_core_defaults() -> None:
         == "/mnt/extra/models/Qwen2.5-7B-Instruct-FP8-dynamic"
     )
     assert A_PRIME_CORE.dtype is CoreDtype.FP8
-    assert 7500 <= A_PRIME_CORE.approx_weights_mib <= 8200
+    assert A_PRIME_CORE.approx_weights_mib == 8407
     assert A_PRIME_CORE.notes
 
 

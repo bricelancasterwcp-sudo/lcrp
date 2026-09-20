@@ -1,0 +1,48 @@
+{
+  "model": "/mnt/extra/models/Qwen2.5-7B-Instruct-FP8-dynamic",
+  "baseline_mib": 1741.0,
+  "batches": [
+    {
+      "batch": 1,
+      "wall_s": 0.058,
+      "out_tokens": 3,
+      "req_per_s": 17.26,
+      "tok_per_s": 51.8,
+      "nvidia_mib": 12225.0,
+      "resident_delta_mib": 10484.0,
+      "sample_reply": "OK0"
+    },
+    {
+      "batch": 2,
+      "wall_s": 0.061,
+      "out_tokens": 6,
+      "req_per_s": 32.91,
+      "tok_per_s": 98.7,
+      "nvidia_mib": 12225.0,
+      "resident_delta_mib": 10484.0,
+      "sample_reply": "OK0"
+    },
+    {
+      "batch": 4,
+      "wall_s": 0.062,
+      "out_tokens": 12,
+      "req_per_s": 64.62,
+      "tok_per_s": 193.9,
+      "nvidia_mib": 12225.0,
+      "resident_delta_mib": 10484.0,
+      "sample_reply": "OK0"
+    },
+    {
+      "batch": 8,
+      "wall_s": 0.061,
+      "out_tokens": 24,
+      "req_per_s": 130.3,
+      "tok_per_s": 390.9,
+      "nvidia_mib": 12225.0,
+      "resident_delta_mib": 10484.0,
+      "sample_reply": "OK0"
+    }
+  ],
+  "pass_resident_cap": true,
+  "pass_pin_headroom": true
+}
