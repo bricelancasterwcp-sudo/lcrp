@@ -1,0 +1,9 @@
+{
+  "decode_tokens": 256,
+  "wall_s": 3.672,
+  "tok_per_s": 69.7,
+  "baseline_mib": 1686.0,
+  "after_mib": 12170.0,
+  "resident_delta_mib": 10484.0,
+  "reply_chars": 1233
+}
