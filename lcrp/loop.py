@@ -10,6 +10,7 @@ from dataclasses import dataclass
 from lcrp.bank import PatchRecord, PinCache, make_toy_bank
 from lcrp.budget import AdmissionResult, ResidentBudget, admit
 from lcrp.campaign import A_PRIME, CampaignAPrime, CoreDtype
+from lcrp.core import A_PRIME_CORE, CoreSpec, boot_core
 from lcrp.journal import Journal
 from lcrp.router import PatchScore, RouteDecision, ScoreRouter
 
@@ -49,17 +50,22 @@ class SegmentLoop:
     campaign: CampaignAPrime = A_PRIME
     journal: Journal | None = None
     bank: dict[str, PatchRecord] | None = None
+    core_spec: CoreSpec | None = None
 
     def __post_init__(self) -> None:
         if self.journal is None:
             self.journal = Journal()
         if self.bank is None:
             self.bank = make_toy_bank()
+        if self.core_spec is None:
+            self.core_spec = A_PRIME_CORE
         self.router = ScoreRouter(tau=self.tau, campaign=self.campaign)
         self.pins = PinCache(max_mib=self.campaign.max_pins_mib)
-        self.journal.record(
-            "boot",
-            core_dtype=self.core_dtype.value,
+        # Wiring-only boot: journals model_id/dtype/weights; does not load weights.
+        boot_core(
+            self.journal,
+            self.core_spec,
+            core_dtype=self.core_dtype,
             core_weights_mib=self.core_weights_mib,
             campaign=self.campaign.name,
             bank_size=len(self.bank),
