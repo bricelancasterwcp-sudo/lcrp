@@ -17,8 +17,9 @@ from lcrp.journal import Journal
 
 ENV_CORE_PATH = "LCRP_CORE_PATH"
 
-# Mid-range estimate for FP8 7B weights (~7.5–8.2 GiB); not measured VRAM.
-_A_PRIME_APPROX_WEIGHTS_MIB = 7800
+# Measured on RTX 5080 via vLLM 0.29 ("Model loading took 8.21 GiB").
+# See scripts/smoke_fp8_vllm_report.json / A′ battery reports.
+_A_PRIME_APPROX_WEIGHTS_MIB = 8407
 
 
 @dataclass(frozen=True)
@@ -50,8 +51,8 @@ A_PRIME_CORE = CoreSpec(
     dtype=CoreDtype.FP8,
     approx_weights_mib=_A_PRIME_APPROX_WEIGHTS_MIB,
     notes=(
-        "Estimate for FP8 7B weights (~7.5–8.2 GiB on disk / weight footprint); "
-        "not a measured resident VRAM number. Override path via LCRP_CORE_PATH."
+        "Calibrated FP8 weight footprint: 8407 MiB (vLLM 0.29 / CutlassFP8ScaledMM on RTX 5080). "
+        "Override path via LCRP_CORE_PATH. HF transformers decompresses FP8 and is not valid for A′."
     ),
 )
 
