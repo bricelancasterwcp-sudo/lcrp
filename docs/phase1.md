@@ -30,3 +30,10 @@ source .venv/bin/activate
 python -m pip install -e '.[dev]'
 python -m pytest -q
 ```
+
+
+## Fake-bank segment loop
+
+`lcrp.loop.SegmentLoop` runs **route → prefetch → pin → admit → apply** against
+an in-memory toy bank (`lcrp.bank`). Every step is journaled. Admission uses
+Campaign A′ caps. This is a systems dry-run, not model inference.
