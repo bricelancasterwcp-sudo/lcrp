@@ -78,3 +78,12 @@ VLLM_USE_FLASHINFER_SAMPLER=0 /mnt/extra/venvs/lcrp-smoke/bin/python \
 Expect core weights ≈ 8.21 GiB (≤ 9000 MiB) and process-attributed resident
 delta ≤ 14000 MiB with room for the 1024 MiB pin budget. Hugging Face
 `transformers` is **not** a valid FP8 path here — it decompresses to BF16.
+
+
+### Extended battery
+
+`scripts/smoke_fp8_a_prime_battery.py` loads once, runs 8 short prompts for latency,
+then a context sweep (~256–4k tokens). Sample report:
+`scripts/smoke_fp8_a_prime_battery_report.json`. Decode throughput sample:
+`scripts/smoke_fp8_decode_report.json`.
+
