@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lcrp"
+version = "0.0.0"
+description = "Logic-Core + Retrieved Parametric Patches (Phase 0 scaffold)"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Brice Lancaster" }]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["lcrp*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
