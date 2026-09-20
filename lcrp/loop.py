@@ -1,4 +1,4 @@
-"""Segment loop: route → prefetch → pin → admit → apply (fake bank).
+"""Segment loop: route → prefetch → pin → admit → apply.
 
 Journals every step. Refuses with bloomery-style arithmetic when A′ caps fail.
 """
@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from lcrp.apply import ApplySpec, build_apply_spec
 from lcrp.bank import PatchRecord, PinCache, make_toy_bank
 from lcrp.budget import AdmissionResult, ResidentBudget, admit
 from lcrp.campaign import A_PRIME, CampaignAPrime, CoreDtype
@@ -35,6 +36,7 @@ class SegmentResult:
     applied: tuple[str, ...]
     evicted: tuple[str, ...]
     refused: bool
+    apply_spec: ApplySpec | None = None
 
 
 @dataclass
@@ -217,11 +219,14 @@ class SegmentLoop:
                 refused=True,
             )
 
+        apply_spec = build_apply_spec(self.pins, applied)
         self.journal.record(
             "apply",
             segment_id=segment_id,
             patch_ids=list(applied),
             pinned_mib=self.pins.used_mib,
+            adapter_paths=list(apply_spec.adapter_paths),
+            digests=list(apply_spec.digests),
         )
         return SegmentResult(
             segment_id=segment_id,
@@ -230,4 +235,5 @@ class SegmentLoop:
             applied=tuple(applied),
             evicted=tuple(evicted),
             refused=False,
+            apply_spec=apply_spec,
         )

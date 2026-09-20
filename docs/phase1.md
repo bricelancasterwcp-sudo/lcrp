@@ -93,3 +93,43 @@ then a context sweep (~256–4k tokens). Sample report:
 RTX 5080). Use that for `admit()` / resident planning — not the older 7800
 estimate. Batch QPS sample: `scripts/smoke_fp8_batch_qps_report.json`.
 
+## Real LoRA pin / apply
+
+`PatchRecord.adapter_path` points at a PEFT adapter directory. On pin,
+`PinCache` verifies `digest_adapter_dir(path)` against the record digest.
+
+`build_apply_spec(pins, ids)` returns adapter paths + digests for an inference
+backend (vLLM LoRA / PEFT) without importing those stacks into the library.
+
+Train a Widget API domain adapter:
+
+```sh
+HF_HOME=/mnt/extra/hf-cache \
+  /mnt/extra/venvs/lcrp-train/bin/python scripts/train_domain_lora.py \
+  --out /mnt/extra/models/lcrp-patches/widget-api-lora
+```
+
+Dry-run three-arm journal path:
+
+```sh
+python scripts/eval_three_arms.py --adapter /mnt/extra/models/lcrp-patches/widget-api-lora
+```
+
+Generate three-arm cell (CUDA; exact-match on short answers):
+
+```sh
+PYTHONPATH=. /mnt/extra/venvs/lcrp-train/bin/python scripts/eval_lora_generate.py
+```
+
+Sample A′ cell (n=20 Widget API holdout, 2026-09-20):
+
+| Arm | Exact-match |
+| --- | ---: |
+| `core_only` | 0.40 |
+| `oracle_patches` | 1.00 |
+| `router` (single-patch bank ≡ oracle) | 1.00 |
+| lift | **+60 pp** |
+
+Adapter digest is verified on pin; report lands at
+`/mnt/extra/models/lcrp-patches/widget-api-lora/three_arm_generate.json`.
+
