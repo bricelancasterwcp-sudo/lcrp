@@ -10,6 +10,7 @@ REQUIRED = [
     "docs/sensorium-harness.md",
     "docs/borrowed-laws.md",
     "docs/gates.md",
+    "docs/phase1.md",
 ]
 
 
