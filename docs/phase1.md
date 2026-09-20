@@ -133,3 +133,6 @@ Sample A′ cell (n=20 Widget API holdout, 2026-09-20):
 Adapter digest is verified on pin; report lands at
 `/mnt/extra/models/lcrp-patches/widget-api-lora/three_arm_generate.json`.
 
+## Kill sheet
+
+Falsifiers and near-term proofs: [`a-prime-kill-sheet.md`](a-prime-kill-sheet.md).
