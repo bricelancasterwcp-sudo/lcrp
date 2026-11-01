@@ -50,20 +50,20 @@ Pin slots are finite. Planner decides top-k **and** whether they fit.
 ### 5. Prefetch is part of admission
 
 Segment N routes while segment N−1 computes. Journal `prefetch_wait_ms`.
-If wait dominates TTFT/TBT on the target box, G-latency-prefetch fails — that
+If wait dominates TTFT/TBT on the target box, G-latency-prefetch fails. That
 is a product kill, not a tuning footnote.
 
 ### 6. Journal everything
 
 Append-only events (minimum):
 
-- `boot` — digests, measured budget, profile id
-- `route` — segment id, query hash, top-k ids, scores, τ decision
-- `prefetch` — ids, bytes, wait_ms, hit/miss
-- `pin` / `evict` — slot, id, digest, reason
-- `apply` — layers touched, fuse mode
-- `refuse` — arithmetic payload
-- `degrade` — named (e.g. `core_only_after_pin_fail`) — should be rare and loud
+- `boot`: digests, measured budget, profile id
+- `route`: segment id, query hash, top-k ids, scores, τ decision
+- `prefetch`: ids, bytes, wait_ms, hit/miss
+- `pin` / `evict`: slot, id, digest, reason
+- `apply`: layers touched, fuse mode
+- `refuse`: arithmetic payload
+- `degrade`: named (e.g. `core_only_after_pin_fail`). It should be rare and loud
 
 ### 7. Boot admission
 
@@ -82,8 +82,8 @@ blessed floor profile before promotion.
   (`G-patch-warm`, `G-router-cover`).
 - Weights in bloomery are charged but not auto-evicted; patches **are** meant
   to evict. Different policy by design.
-- Hybrid / MoE geometry quirks in serving still apply to the core blob —
-  measure kv_per_token from the actual artifact (assay / gguf-geometry
+- Hybrid / MoE geometry quirks in serving still apply to the core blob.
+  Measure kv_per_token from the actual artifact (assay / gguf-geometry
   lessons).
 
 ## Planner sketch
