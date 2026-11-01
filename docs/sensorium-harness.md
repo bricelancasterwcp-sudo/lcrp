@@ -2,7 +2,7 @@
 
 Sibling: [sensorium](https://github.com/bricelancasterwcp-sudo/sensorium).
 
-Sensorium records what a program **actually did** and answers from the trace —
+Sensorium records what a program **actually did** and answers from the trace,
 or refuses by name. During LCRP prototypes, use it (or a sensorium-shaped
 SQLite/JSONL journal) so routing and paging bugs are not debugged by vibe.
 
@@ -23,8 +23,8 @@ Minimum event kinds on the hot path:
 | `task_outcome` | item_id, arm, score, notes |
 
 Capture digests for core, bank, router at `boot`. If LINE/locals-style detail
-is needed for router code, use sensorium `--focus` on the router module only —
-keep overhead intentional.
+is needed for router code, use sensorium `--focus` on the router module only.
+Keep overhead intentional.
 
 ## Questions the trace must answer
 
@@ -35,15 +35,15 @@ keep overhead intentional.
 - Did two multi-hop items require disjoint packs that thrashed the pin set?
 
 If the trace cannot settle a question, the harness prints a refusal
-(`NOTHING WAS CHECKED` / `REFUSED`) and the exact re-record command — never a
-guess.
+(`NOTHING WAS CHECKED` / `REFUSED`) and the exact re-record command. It never
+guesses.
 
 ## Honesty rules (non-negotiable)
 
 1. Truncated captures are marked, not repaired.
 2. Unrecorded sites are counted as unchecked, not as zeros.
 3. MATCH/diff of two runs is about **causal shape** unless values were
-   captured — do not overclaim.
+   captured. Do not overclaim.
 4. No answer fabricates a routing story from partial logs.
 
 ## Plug-in to the eval loop

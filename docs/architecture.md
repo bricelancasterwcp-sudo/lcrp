@@ -5,11 +5,11 @@
 Dense open-weight models pay full VRAM for parameters that are mostly
 *parametric memory*. LCRP splits that into:
 
-1. **Logic core** — small, always resident; syntax, control, routing features,
+1. **Logic core:** small, always resident; syntax, control, routing features,
    general competence.
-2. **Patch bank** — cold parametric memory as addressable ΔW / LoRA shards on
+2. **Patch bank:** cold parametric memory as addressable ΔW / LoRA shards on
    CPU or NVMe.
-3. **Router + pin slots** — per segment, retrieve and fuse only what is needed.
+3. **Router + pin slots:** per segment, retrieve and fuse only what is needed.
 
 Goal: resident set ≪ dense W4/W8 while quality on domain/long-tail tasks stays
 within pre-registered deltas of an oracle-patched or dense baseline.
@@ -65,7 +65,7 @@ heavier kernels.
 
 ### Router
 
-- **Granularity:** segment (every N tokens, chunk, or tool boundary) — not
+- **Granularity:** segment (every N tokens, chunk, or tool boundary), not
   per-token in v1.
 - Query from early/mid pooled hidden state → score patch embeddings → top-k
   (2–8).

@@ -18,8 +18,8 @@ Repo: https://github.com/bricelancasterwcp-sudo/assay
 - **One VRAM pool**; computed windows; refuse with arithmetic.
 - Pager decisions are deterministic and replayable from the journal.
 - Unmeasured → degrade mode with a cap, never a fake precise budget.
-- Weights/patches/KV accounting mistakes are OOMs or silent quality death —
-  treat accounting as load-bearing.
+- Weights/patches/KV accounting mistakes are OOMs or silent quality death.
+  Treat accounting as load-bearing.
 
 Repo: https://github.com/bricelancasterwcp-sudo/bloomery
 

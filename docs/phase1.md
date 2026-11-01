@@ -1,4 +1,4 @@
-# Phase 1 — Campaign A′ scaffold
+# Phase 1: Campaign A′ scaffold
 
 ## What this is
 
@@ -33,7 +33,7 @@ Override the on-disk location with **`LCRP_CORE_PATH`**. Resolution order in
 
 1. `LCRP_CORE_PATH` if set
 2. `CoreSpec.local_path` if that path exists
-3. else the HF `model_id` string (for tooling — never invents files)
+3. else the HF `model_id` string (for tooling; it never invents files)
 
 `probe_core(path)` reads `config.json` with the stdlib only when the path
 exists; missing paths return `ok=False`. SegmentLoop journals a `boot` event
@@ -77,7 +77,7 @@ VLLM_USE_FLASHINFER_SAMPLER=0 /mnt/extra/venvs/lcrp-smoke/bin/python \
 
 Expect core weights ≈ 8.21 GiB (≤ 9000 MiB) and process-attributed resident
 delta ≤ 14000 MiB with room for the 1024 MiB pin budget. Hugging Face
-`transformers` is **not** a valid FP8 path here — it decompresses to BF16.
+`transformers` is **not** a valid FP8 path here. It decompresses to BF16.
 
 
 ### Extended battery
@@ -90,7 +90,7 @@ then a context sweep (~256–4k tokens). Sample report:
 ### Calibrated core weight
 
 `A_PRIME_CORE.approx_weights_mib` is **8407** (vLLM 0.29 measured weight load on
-RTX 5080). Use that for `admit()` / resident planning — not the older 7800
+RTX 5080). Use that for `admit()` / resident planning, not the older 7800
 estimate. Batch QPS sample: `scripts/smoke_fp8_batch_qps_report.json`.
 
 ## Real LoRA pin / apply

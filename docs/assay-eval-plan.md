@@ -26,17 +26,17 @@ Every published claim names the arms that actually ran.
 
 ## Cells (families)
 
-1. **short_factual** — common facts core should often handle alone.
-2. **long_tail_factual** — cluster-specific / rare facts patches must carry.
-3. **multi_hop** — needs ≥2 patches or patch+core composition.
-4. **long_context** — only at **measured** usable window; if usable &lt; 8k on
+1. **short_factual:** common facts core should often handle alone.
+2. **long_tail_factual:** cluster-specific / rare facts patches must carry.
+3. **multi_hop:** needs ≥2 patches or patch+core composition.
+4. **long_context:** only at **measured** usable window; if usable &lt; 8k on
    the A′ SKU, store `null` + reason (do not pretend 64k).
-5. **instruction_codec** — format landing / tool-shaped outputs if the product
+5. **instruction_codec:** format landing / tool-shaped outputs if the product
    cares (assay’s lesson: codec fitness ≠ intelligence).
-6. **core_logic** — reasoning/coding items that must not regress with patches off.
+6. **core_logic:** reasoning/coding items that must not regress with patches off.
 
 Add cells only with a schema bump and an explicit unmeasured mark on old
-profiles — never silently rescore.
+profiles. Never silently rescore.
 
 ### Sample sizes (A′)
 
@@ -48,7 +48,7 @@ profiles — never silently rescore.
 
 Per cell, record:
 
-- primary task score (accuracy / EM / pass@k — fixed per cell before the run)
+- primary task score (accuracy / EM / pass@k, fixed per cell before the run)
 - `pins_per_segment`, `prefetch_wait_ms`, `resident_mib_peak`
 - `core_mib`, `pins_mib` when accounting is available
 - refusal count and degrade count (must be zero for “clean pass”)
@@ -94,13 +94,13 @@ CI must treat 2/3/4 as red. Never celebrate exit 0 when cells were skipped.
 
 Fail the run if any fire:
 
-1. **Silent truncation / contract-looking success** — bloomery/assay class:
+1. **Silent truncation / contract-looking success:** bloomery/assay class:
    reply OK but canary prefix lost or stats missing.
-2. **Wrong patch, fluent answer** — force incorrect top-1; score must drop or
+2. **Wrong patch, fluent answer:** force incorrect top-1; score must drop or
    abstain; fluent wrong = fail.
-3. **Pin fail → unlabeled core-only** — any degrade without `degrade` journal
+3. **Pin fail → unlabeled core-only:** any degrade without `degrade` journal
    event = fail.
-4. **Unmeasured VRAM claimed precise** — planner must journal degradation mode.
+4. **Unmeasured VRAM claimed precise:** planner must journal degradation mode.
 
 ## Claiming a win over W4
 
